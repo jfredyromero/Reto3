@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/functions_rating.js"></script>
+	<title>Calificaciones</title>
+    </head>
+    <body>
+        <button type="button" onclick="location.href='/'">Regresar</button>
+	<h3>Formulario Calificaciones</h3>
+	<hr>
+	<fieldset style="width: 18%;">
+            <legend>~ Formulario ~</legend>
+            <table>
+                <tr>
+                    <th> Reservación </th>
+                    <td>
+                        <select style="margin-left: 20px" id="reservation">
+                            <option th:each="r: ${reservaciones}" th:value="${r.idReservation}" th:if="${r.score == null or r.score.rate == null}">
+                                <span th:text="'Reservación a nombre de ' + ${r.client.name} + ' entre las fechas ' + ${r.startDate} + ' y ' + ${r.devolutionDate}"></span>                                      
+                            </option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th> Mensaje </th>
+                    <td><textarea id="msg" style="margin-left: 20px" rows="4" cols="65"></textarea></td>
+                </tr>
+                <tr>
+                    <th> Calificación </th>
+                    <td><input type="number" style="margin-left: 20px" id="rate"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="button" onclick="agregarCalificacion($('#rate'),$('#msg'),$('#reservation'))">Agregar Calificación</button>
+                    </td>
+                </tr>
+            </table>
+	</fieldset>
+	
+	<div th:if="${calificaciones != null and !calificaciones.empty}">
+			<h3>Lista de calificaciones</h3>
+		<hr>
+		<table border="2">
+			<tr>
+                            <th style="background-color: darksalmon;"><b>PUNTAJE</b></th>
+                            <th style="background-color: darksalmon;"><b>MENSAJE</b></th>
+                            <th style="background-color: darksalmon;"><b>RESERVACION</b></th>
+			</tr>
+
+			<tr th:each="c: ${calificaciones}">
+                            <td th:text="${c.rate}"></td>	
+                            <td th:text="${c.message}"></td>
+                            <td th:text="'Reservación a nombre de ' + ${c.reservation.client.name} + ' entre las fechas ' + ${c.reservation.startDate} + ' y ' + ${c.reservation.devolutionDate}"></td>
+			</tr>
+		</table>
+	</div>
+
+
+
+	<div th:if="${calificaciones == null or calificaciones.empty}">
+		<h3>No hay calificaciones que mostrar.</h3>
+	</div>
+    </body>
+</html>

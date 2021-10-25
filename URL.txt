@@ -1,0 +1,20 @@
+REST:
+- URL BASE + 8080 + ENDPOINT
+http://129.151.110.228:8080/api/Category/all
+http://129.151.110.228:8080/api/Category/save
+http://129.151.110.228:8080/api/Cabin/all
+http://129.151.110.228:8080/api/Cabin/save
+http://129.151.110.228:8080/api/Client/all
+http://129.151.110.228:8080/api/Client/save
+http://129.151.110.228:8080/api/Message/all
+http://129.151.110.228:8080/api/Message/save
+http://129.151.110.228:8080/api/Reservation/all
+http://129.151.110.228:8080/api/Reservation/save
+http://129.151.110.228:8080/api/Score/all
+http://129.151.110.228:8080/api/Score/save
+http://129.151.110.228:8080/api/Admin/save
+http://129.151.110.228:8080/api/Admin/all
+
+FRONT END:
+- URL BASE + 8080
+http://129.151.110.228:8080/
